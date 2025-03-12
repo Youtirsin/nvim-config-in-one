@@ -85,8 +85,8 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
 -- use bufferline to navigate instead
-keymap("n", "<Tab>", ":tabnext<CR>", opts)
-keymap("n", "<S-Tab>", ":tabprevious<CR>", opts)
+-- keymap("n", "<Tab>", ":tabnext<CR>", opts)
+-- keymap("n", "<S-Tab>", ":tabprevious<CR>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -96,7 +96,8 @@ keymap("v", ">", ">gv", opts)
 -- quicky
 keymap("n", "<C-s>", ":w!<CR>", opts)
 keymap("n", "<Esc>", ":nohl<CR>", opts)
-keymap("n", "qq", ":q!<CR>", opts)
+-- use bufferline to close instead
+-- keymap("n", "qq", ":q!<CR>", opts)
 keymap("v", "<Leader>y", "\"+y", opts)
 
 -- --------------------------- Bootstrap lazy.nvim ---------------------------------------
@@ -180,6 +181,17 @@ require("lazy").setup({
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
       end,
     },
+    {
+      'akinsho/bufferline.nvim',
+      version = "*",
+      dependencies = 'nvim-tree/nvim-web-devicons',
+      config = function()
+        require("bufferline").setup{}
+        keymap("n", "<Tab>", ":BufferLineCycleNext<CR>", opts)
+        keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", opts)
+        keymap("n", "qq", ":bd<CR>", opts)
+      end,
+    },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
@@ -187,4 +199,3 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
-
