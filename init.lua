@@ -98,7 +98,7 @@ keymap("n", "<C-s>", ":w!<CR>", opts)
 keymap("n", "<Esc>", ":nohl<CR>", opts)
 -- use bufferline to close instead
 -- keymap("n", "qq", ":q!<CR>", opts)
-keymap("v", "<Leader>y", "\"+y", opts)
+keymap("v", "<C-c>", "\"+y", opts)
 
 -- --------------------------- Bootstrap lazy.nvim ---------------------------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
